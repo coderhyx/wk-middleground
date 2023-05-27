@@ -1,0 +1,74 @@
+syntax = "v1"
+
+info (
+	title: "健康中台"
+	desc: "向下聚合健康数据，向上提供接口"
+	author: "黄亚雄"
+	email: "coderhyx@163.com"
+)
+
+type ChatGetRequest {
+	UserId   int64  `json:"userId"`
+	Question string `json:"question"`
+}
+
+type ChatGetResponse {
+	Answer string `json:"answer"`
+}
+
+type ChatListRequest {
+	UserId int64 `json:"userId"`
+}
+
+type ChatListResponse {
+	Answers []string `json:"answers"`
+}
+
+type EquipmentBindRequest {
+	UserId int64   `json:"userId"`
+	DataId int64   `json:"dataId"`
+	Score  float64 `json:"score"`
+}
+
+type EquipmentBindResponse {
+	IsBind bool `json:"isBind"`
+}
+
+type StatisticsRequest {
+	UserId int64 `json:"userId"`
+}
+
+type StatisticsResponse {
+	Statistics []string `json:"statistics"`
+}
+
+type ScoreRequest {
+	UserId int64 `json:"userId"`
+}
+
+type CreateScoreRequest {
+	UserId int64   `json:"userId"`
+	Score  float64 `json:"score"`
+}
+
+type ScoreResponse {
+	Score int64 `json:"score"`
+}
+
+service health {
+	@handler ChatGet // 通过chatgpt查询健康信息
+	get /chatgpt/chatget(ChatGetRequest) returns(ChatGetResponse)
+	
+	@handler ChatList // chatgpt历史查询
+	get /chatgpt/chatlist(ChatListRequest) returns(ChatListResponse)
+	
+	@handler EquipmentBind // 上报数据绑定用户
+	post /equipment/bind(EquipmentBindRequest) returns(EquipmentBindResponse)
+	
+	@handler Statistics // 统计结果
+	get /statistics/result(StatisticsRequest) returns(StatisticsResponse)
+	
+	@handler Score // 获得积分
+	get /score/getNum(ScoreRequest) returns(ScoreResponse)
+	
+}

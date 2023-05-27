@@ -1,0 +1,17 @@
+Name: health
+Host: 0.0.0.0
+Port: 18080
+#Mqtt:
+#  Broker: tcp://127.0.0.1:1883
+#  ClientID: health-data-srv
+#  Password: '123456'
+#EquipmentSrv:
+#  Etcd:
+#    Hosts:
+#      - 0.0.0.0:2379
+#    Key: equipment.rpc
+ScoreSrv:
+  Etcd:
+    Hosts:
+      - 0.0.0.0:2379
+    Key: score.rpc
