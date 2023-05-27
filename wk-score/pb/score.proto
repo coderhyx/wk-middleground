@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "./";
+
+package pb;
+
+message CreateReq {
+  int64 userId = 1;
+  double score = 2;
+}
+
+message UpdateReq {
+  int64 userId = 1;
+  double score = 2;
+}
+
+message CreateResp {
+}
+
+message GetReq {
+  int64 userId = 1;
+}
+message GetResp {
+  double score = 1;
+}
+
+service score {
+  rpc create(CreateReq)returns(CreateResp);
+  rpc update(UpdateReq)returns(CreateResp);
+  rpc dtmCreate(CreateReq)returns(CreateResp);
+  rpc dtmRollback(CreateReq)returns(CreateResp);
+  rpc getScore(GetReq)returns(GetResp);
+}
