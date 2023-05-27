@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"wk-middleground/wk-score/internal/svc"
-	"wk-middleground/wk-score/pb"
+	__ "wk-middleground/wk-score/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,7 +24,8 @@ func NewGetScoreLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetScore
 }
 
 func (l *GetScoreLogic) GetScore(in *__.GetReq) (*__.GetResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &__.GetResp{}, nil
+	scoreM, _ := l.svcCtx.ScoreModel.FindByUserId(l.ctx, in.UserId)
+	return &__.GetResp{
+		Score: scoreM.Score,
+	}, nil
 }

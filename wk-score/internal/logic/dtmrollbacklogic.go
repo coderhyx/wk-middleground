@@ -2,9 +2,10 @@ package logic
 
 import (
 	"context"
+	"fmt"
 
 	"wk-middleground/wk-score/internal/svc"
-	"wk-middleground/wk-score/pb"
+	__ "wk-middleground/wk-score/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,7 +25,6 @@ func NewDtmRollbackLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DtmRo
 }
 
 func (l *DtmRollbackLogic) DtmRollback(in *__.CreateReq) (*__.CreateResp, error) {
-	// todo: add your logic here and delete this line
-
+	fmt.Println(">>>>>>>>>>>>>>>>>>>>score  DtmRollback")
 	return &__.CreateResp{}, nil
 }
