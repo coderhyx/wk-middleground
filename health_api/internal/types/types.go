@@ -20,7 +20,7 @@ type ChatListResponse struct {
 
 type EquipmentBindRequest struct {
 	UserId int64   `json:"userId"`
-	DataId int64   `json:"dataId"`
+	DataId string  `json:"dataId"`
 	Score  float64 `json:"score"`
 }
 

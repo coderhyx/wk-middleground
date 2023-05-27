@@ -1,0 +1,10 @@
+Name: equipment.rpc
+ListenOn: 0.0.0.0:18082
+Etcd:
+  Hosts:
+  - 127.0.0.1:2379
+  Key: equipment.rpc
+Mongo:
+  Uri: "mongodb://admin:123456@127.0.0.1:27017"
+  Db: "wk_health_data"
+  Collection: "health_data"

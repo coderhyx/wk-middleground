@@ -1,0 +1,8 @@
+Name: score.rpc
+ListenOn: 0.0.0.0:18081
+Etcd:
+  Hosts:
+  - 0.0.0.0:2379
+  Key: score.rpc
+DB:
+  DataSource: root:123456@tcp(127.0.0.1:3306)/wk_score?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai

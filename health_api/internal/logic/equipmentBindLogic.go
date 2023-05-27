@@ -3,6 +3,7 @@ package logic
 import (
 	"context"
 	"fmt"
+	"wk-middleground/equipment_srv/equipment"
 	"wk-middleground/score_srv/score"
 
 	"github.com/dtm-labs/client/dtmgrpc"
@@ -43,13 +44,13 @@ func (l *EquipmentBindLogic) EquipmentBind(req *types.EquipmentBindRequest) (res
 	sagaGrpc.Add(scoreSrv+"/pb.score/dtmCreate", scoreSrv+"/pb.score/dtmRollback", createScoreReq)
 
 	//绑定健康数据
-	//eqpSrv, err := l.svcCtx.Config.EquipmentSrv.BuildTarget()
-	//bindScoreReq := &equipment.BindRequest{
-	//	EquipmentId: "22",
-	//	DataId:      "646df90aa6634dfff81d0aa1",
-	//}
-	//fmt.Println(">>>>>>>userId", req.UserId)
-	//sagaGrpc.Add(eqpSrv+"/equipment.Equipment/bindEqpData", eqpSrv+"/equipment.Equipment/bindEqpData", bindScoreReq)
+	eqpSrv, err := l.svcCtx.Config.EquipmentSrv.BuildTarget()
+	bindScoreReq := &equipment.BindRequest{
+		EquipmentId: req.DataId,
+		DataId:      "646df90aa6634dfff81d0aa1",
+	}
+	fmt.Println(">>>>>>>userId", req.UserId)
+	sagaGrpc.Add(eqpSrv+"/pb.Equipment/bindEqpData", eqpSrv+"/pb.Equipment/bindEqpData", bindScoreReq)
 
 	//提交事务
 	err = sagaGrpc.Submit()

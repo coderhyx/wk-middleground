@@ -7,8 +7,8 @@ import (
 
 type Config struct {
 	rest.RestConf
-	//EquipmentSrv zrpc.RpcClientConf
-	ScoreSrv zrpc.RpcClientConf
+	EquipmentSrv zrpc.RpcClientConf
+	ScoreSrv     zrpc.RpcClientConf
 	//Mqtt         struct {
 	//	Broker   string
 	//	ClientID string

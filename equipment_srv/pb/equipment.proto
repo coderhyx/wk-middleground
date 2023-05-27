@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./";
+
+message EquipmentRequest {
+  string userId = 1;
+  string equipmentId = 2;
+  double bpm = 3;
+  double pi = 4;
+  double spo2 = 5;
+  double gluecose = 6;
+}
+
+message BindRequest {
+  string equipmentId = 1;
+  string dataId = 2;
+}
+
+message UpEqpRequest {
+  string Data = 1;
+}
+message EquipmentData {
+  // 设备id
+  string id = 1;
+  // 用户名称
+  string userId = 2;
+  // 设备型号
+  string TypeId = 3;
+  // 设备数据
+  string data = 4;
+}
+message EquipmentResponse {
+  repeated EquipmentData data = 1;
+}
+
+message ResRequest {
+}
+
+service Equipment {
+  //数据查询
+  rpc getEqpData(EquipmentRequest) returns(EquipmentResponse);
+  //绑定设备
+  rpc bindEqpData(BindRequest) returns(ResRequest);
+  //血糖仪数据上报
+  rpc upXtyData(EquipmentRequest) returns(ResRequest);
+  //血氧仪数据上报
+  rpc upXyyData(EquipmentRequest) returns(ResRequest);
+}
